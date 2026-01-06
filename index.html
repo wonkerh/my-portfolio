@@ -1,0 +1,1807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mziwonke Mbambo | Software Developer</title>
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-light: #dbeafe;
+            --primary-dark: #1e40af;
+            --secondary: #1e293b;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --gray-light: #e2e8f0;
+            --white: #ffffff;
+            --android-green: #3ddc84;
+            --kotlin-purple: #7f52ff;
+            --success: #10b981;
+            --shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            --radius: 8px;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--light);
+            color: var(--secondary);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* Header */
+        .header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 1.5rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .logo-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--primary);
+            border-radius: 50%;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 2.5rem;
+        }
+        
+        .nav-link {
+            color: var(--gray);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: color 0.2s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero */
+        .hero {
+            padding: 6rem 0 4rem;
+            background: linear-gradient(135deg, var(--white) 0%, var(--primary-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--primary-light) 0%, transparent 70%);
+            border-radius: 50%;
+            opacity: 0.5;
+        }
+        
+        .hero-content {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero-highlight {
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .hero-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 5px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: var(--primary-light);
+            z-index: -1;
+            border-radius: 4px;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            padding: 0.5rem 1.25rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .badge-android {
+            background: rgba(61, 220, 132, 0.1);
+            color: var(--android-green);
+            border: 1px solid rgba(61, 220, 132, 0.3);
+        }
+        
+        .badge-kotlin {
+            background: rgba(127, 82, 255, 0.1);
+            color: var(--kotlin-purple);
+            border: 1px solid rgba(127, 82, 255, 0.3);
+        }
+        
+        .badge-dotnet {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            border: 1px solid rgba(37, 99, 235, 0.3);
+        }
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Section */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .section-subtitle {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        /* Android Development Section */
+        .android-section {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: var(--radius);
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .android-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .android-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--android-green), #2ba166);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .android-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .android-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .android-card {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .android-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+        
+        .android-card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .android-card-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+        
+        .android-card-icon.kotlin {
+            background: rgba(127, 82, 255, 0.1);
+            color: var(--kotlin-purple);
+        }
+        
+        .android-card-icon.gradle {
+            background: rgba(0, 189, 211, 0.1);
+            color: #00bdd3;
+        }
+        
+        .android-card-icon.studio {
+            background: rgba(61, 220, 132, 0.1);
+            color: var(--android-green);
+        }
+        
+        .android-card-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .android-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+        }
+        
+        .android-tech {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        .android-tech.kotlin {
+            background: rgba(127, 82, 255, 0.1);
+            color: var(--kotlin-purple);
+        }
+        
+        .android-tech.android {
+            background: rgba(61, 220, 132, 0.1);
+            color: var(--android-green);
+        }
+        
+        /* Project Showcase */
+        .android-project {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2.5rem;
+            margin-top: 3rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+        }
+        
+        .project-showcase {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .project-info h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+        
+        .project-features {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+        
+        .project-features li {
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--gray);
+        }
+        
+        .project-features li::before {
+            content: '✓';
+            color: var(--android-green);
+            font-weight: bold;
+        }
+        
+        .project-visual {
+            text-align: center;
+        }
+        
+        .phone-mockup {
+            width: 200px;
+            height: 400px;
+            background: var(--secondary);
+            border-radius: 30px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .phone-screen {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            background: var(--light);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .app-header {
+            height: 60px;
+            background: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+        
+        .app-content {
+            flex: 1;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .app-item {
+            height: 40px;
+            background: var(--gray-light);
+            border-radius: 8px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        /* Skills */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .skill-group {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+        }
+        
+        .skill-group-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--primary-light);
+        }
+        
+        .skill-group-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-light);
+            border-radius: var(--radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+        
+        .skill-group-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .skill-list {
+            list-style: none;
+        }
+        
+        .skill-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .skill-item:last-child {
+            border-bottom: none;
+        }
+        
+        .skill-name {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 500;
+        }
+        
+        .skill-level {
+            display: flex;
+            gap: 4px;
+        }
+        
+        .level-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--gray-light);
+        }
+        
+        .level-dot.filled {
+            background: var(--primary);
+        }
+        
+        /* Education Section - Added */
+        .education-section {
+            background: var(--white);
+            border-radius: var(--radius);
+            padding: 4rem;
+            margin: 3rem 0;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+        }
+        
+        .education-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .education-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .education-item::before {
+            content: '';
+            position: absolute;
+            left: 28px;
+            top: 0;
+            bottom: -3rem;
+            width: 2px;
+            background: var(--gray-light);
+        }
+        
+        .education-item:last-child::before {
+            display: none;
+        }
+        
+        .education-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .education-content {
+            flex: 1;
+            background: var(--light);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--gray-light);
+        }
+        
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        
+        .education-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        
+        .education-period {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .education-subtitle {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .education-details {
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+        
+        .education-achievements {
+            background: rgba(16, 185, 129, 0.1);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-top: 1rem;
+        }
+        
+        .achievement-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--success);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .achievement-title i {
+            font-size: 0.9rem;
+        }
+        
+        .achievement-list {
+            list-style: none;
+        }
+        
+        .achievement-list li {
+            margin-bottom: 0.5rem;
+            color: var(--gray);
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .achievement-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project {
+            background: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--gray-light);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .project:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-header {
+            padding: 2rem;
+            background: var(--primary-light);
+            border-bottom: 1px solid var(--gray-light);
+        }
+        
+        .project-title-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .project-grade {
+            background: var(--primary);
+            color: var(--white);
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        
+        .project-type {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-description {
+            padding: 1.5rem 2rem;
+            color: var(--gray);
+        }
+        
+        .project-tech {
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--gray-light);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+        
+        .tech-tag {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+        
+        /* Contact Section - Enhanced */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+            border-radius: var(--radius);
+            padding: 4rem;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .contact-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+        
+        .contact-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .contact-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--white);
+            font-size: 1.5rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .contact-link {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+            margin-top: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            transition: background 0.3s;
+        }
+        
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+        
+        .social-link {
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: transform 0.3s, background 0.3s;
+        }
+        
+        .social-link:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--secondary);
+            color: var(--white);
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: var(--gray-light);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .footer-links a:hover {
+            color: var(--white);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray-light);
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 1rem;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .nav {
+                display: none;
+            }
+            
+            .hero-stats {
+                gap: 2rem;
+            }
+            
+            .stat-number {
+                font-size: 2rem;
+            }
+            
+            .android-section, .education-section {
+                padding: 2rem 1rem;
+            }
+            
+            .education-item {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .education-item::before {
+                left: 30px;
+                top: 60px;
+                bottom: -2rem;
+            }
+            
+            .project-showcase {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-section {
+                padding: 2rem 1rem;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <span>MZIWONKE</span>
+                    <div class="logo-dot"></div>
+                    <span>MBAMBO</span>
+                </a>
+                <nav class="nav">
+                    <a href="#skills" class="nav-link">Skills</a>
+                    <a href="#android" class="nav-link">Android</a>
+                    <a href="#projects" class="nav-link">Projects</a>
+                    <a href="#education" class="nav-link">Education</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Full Stack &<br>
+                    <span class="hero-highlight">Android Developer</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Building scalable solutions with expertise in Android (Kotlin), .NET, 
+                    and modern web technologies. Passionate about clean architecture and practical implementation.
+                </p>
+                
+                <div class="hero-badges">
+                    <span class="badge badge-android">
+                        <i class="fab fa-android"></i> Android Development
+                    </span>
+                    <span class="badge badge-kotlin">
+                        <i class="fas fa-code"></i> Kotlin
+                    </span>
+                    <span class="badge badge-dotnet">
+                        <i class="fab fa-microsoft"></i> .NET
+                    </span>
+                </div>
+                
+                <div class="hero-stats">
+                    <div class="stat">
+                        <div class="stat-number">6</div>
+                        <div class="stat-label">Distinctions</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">87%</div>
+                        <div class="stat-label">Top Grade</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">3+</div>
+                        <div class="stat-label">Platforms</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-number">10+</div>
+                        <div class="stat-label">Projects</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Android Development Section -->
+    <section id="android" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Android Development</h2>
+                <p class="section-subtitle">Professional experience in Android app development using Kotlin, Gradle, and Android Studio</p>
+            </div>
+            
+            <div class="android-section">
+                <div class="android-header">
+                    <div class="android-icon">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <h2 class="android-title">Android Development Stack</h2>
+                </div>
+                
+                <div class="android-grid">
+                    <div class="android-card">
+                        <div class="android-card-header">
+                            <div class="android-card-icon kotlin">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <h3 class="android-card-title">Kotlin Development</h3>
+                        </div>
+                        <p>Proficient in modern Android development using Kotlin programming language. Experience with Kotlin coroutines, extension functions, and null safety features.</p>
+                        <div class="android-tech-stack">
+                            <span class="android-tech kotlin">Kotlin</span>
+                            <span class="android-tech">Coroutines</span>
+                            <span class="android-tech">Jetpack</span>
+                            <span class="android-tech">MVVM</span>
+                        </div>
+                    </div>
+                    
+                    <div class="android-card">
+                        <div class="android-card-header">
+                            <div class="android-card-icon gradle">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="android-card-title">Gradle Build System</h3>
+                        </div>
+                        <p>Experienced with Gradle build system for Android projects. Capable of managing dependencies, creating build variants, and optimizing build processes.</p>
+                        <div class="android-tech-stack">
+                            <span class="android-tech">Gradle</span>
+                            <span class="android-tech">Build Variants</span>
+                            <span class="android-tech">Dependency Mgmt</span>
+                            <span class="android-tech">ProGuard</span>
+                        </div>
+                    </div>
+                    
+                    <div class="android-card">
+                        <div class="android-card-header">
+                            <div class="android-card-icon studio">
+                                <i class="fas fa-desktop"></i>
+                            </div>
+                            <h3 class="android-card-title">Android Studio</h3>
+                        </div>
+                        <p>Proficient in Android Studio IDE for development, debugging, and testing. Experience with Layout Editor, Profiler, and advanced debugging tools.</p>
+                        <div class="android-tech-stack">
+                            <span class="android-tech android">Android Studio</span>
+                            <span class="android-tech">Layout Editor</span>
+                            <span class="android-tech">Profiler</span>
+                            <span class="android-tech">Emulator</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="android-project">
+                    <div class="project-showcase">
+                        <div class="project-info">
+                            <h3>Android Timetable Application</h3>
+                            <p>A native mobile application developed for academic schedule management with local database storage and push notifications.</p>
+                            <ul class="project-features">
+                                <li>SQLite database for local data persistence</li>
+                                <li>Custom UI components for schedule visualization</li>
+                                <li>Push notifications for class reminders</li>
+                                <li>Material Design guidelines implementation</li>
+                                <li>Responsive layout for different screen sizes</li>
+                            </ul>
+                            <div class="android-tech-stack">
+                                <span class="android-tech kotlin">Kotlin</span>
+                                <span class="android-tech">SQLite</span>
+                                <span class="android-tech">Room</span>
+                                <span class="android-tech">Jetpack Compose</span>
+                                <span class="android-tech">Coroutines</span>
+                            </div>
+                        </div>
+                        <div class="project-visual">
+                            <div class="phone-mockup">
+                                <div class="phone-screen">
+                                    <div class="app-header">Timetable</div>
+                                    <div class="app-content">
+                                        <div class="app-item"></div>
+                                        <div class="app-item" style="width: 80%;"></div>
+                                        <div class="app-item"></div>
+                                        <div class="app-item" style="width: 90%;"></div>
+                                        <div class="app-item" style="width: 70%;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Technical Expertise</h2>
+                <p class="section-subtitle">Comprehensive skill set across multiple platforms and technologies</p>
+            </div>
+            
+            <div class="skills-container">
+                <!-- Programming Languages -->
+                <div class="skill-group">
+                    <div class="skill-group-header">
+                        <div class="skill-group-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h3 class="skill-group-title">Programming Languages</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">
+                                <i class="fab fa-csharp"></i> C# (.NET)
+                            </span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">
+                                <i class="fab fa-java"></i> Java
+                            </span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">
+                                <i class="fas fa-mobile-alt"></i> Kotlin
+                            </span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">SQL</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Frameworks & Tools -->
+                <div class="skill-group">
+                    <div class="skill-group-header">
+                        <div class="skill-group-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h3 class="skill-group-title">Frameworks & Tools</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">.NET Framework</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Android Studio</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Windows Forms</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Gradle</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot"></div>
+                                <div class="level-dot"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Database & Development -->
+                <div class="skill-group">
+                    <div class="skill-group-header">
+                        <div class="skill-group-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3 class="skill-group-title">Database & Development</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">SQL Server</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">SQLite (Android)</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">
+                                <i class="fab fa-git-alt"></i> Git
+                            </span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot"></div>
+                                <div class="level-dot"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Visual Studio</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Core Competencies -->
+                <div class="skill-group">
+                    <div class="skill-group-header">
+                        <div class="skill-group-icon">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h3 class="skill-group-title">Core Competencies</h3>
+                    </div>
+                    <ul class="skill-list">
+                        <li class="skill-item">
+                            <span class="skill-name">Object-Oriented Programming</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">SOLID Principles</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Mobile App Architecture</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot"></div>
+                            </div>
+                        </li>
+                        <li class="skill-item">
+                            <span class="skill-name">Database Design</span>
+                            <div class="skill-level">
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot filled"></div>
+                                <div class="level-dot"></div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="section" style="background: var(--primary-light);">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Featured Projects</h2>
+                <p class="section-subtitle">Practical implementation of software engineering principles across multiple platforms</p>
+            </div>
+            
+            <div class="projects-grid">
+                <!-- Android Project -->
+                <div class="project">
+                    <div class="project-header">
+                        <div class="project-title-row">
+                            <h3 class="project-title">Android Timetable App</h3>
+                            <span class="project-grade">Mobile</span>
+                        </div>
+                        <div class="project-type">Kotlin • Android Studio • SQLite • Gradle</div>
+                    </div>
+                    <div class="project-description">
+                        Native mobile application for academic schedule management with local database 
+                        storage and push notifications. Features Material Design and responsive layouts.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">Android Studio</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">Room</span>
+                        <span class="tech-tag">Coroutines</span>
+                        <span class="tech-tag">Material Design</span>
+                    </div>
+                </div>
+                
+                <!-- .NET Project -->
+                <div class="project">
+                    <div class="project-header">
+                        <div class="project-title-row">
+                            <h3 class="project-title">Enterprise Admin System</h3>
+                            <span class="project-grade">87%</span>
+                        </div>
+                        <div class="project-type">C# • .NET • Windows Forms • SQL Server</div>
+                    </div>
+                    <div class="project-description">
+                        Comprehensive administrative management system with multi-tier architecture. 
+                        Implemented SOLID principles with repository pattern and dependency injection.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">C# 10</span>
+                        <span class="tech-tag">.NET 6</span>
+                        <span class="tech-tag">Windows Forms</span>
+                        <span class="tech-tag">SQL Server</span>
+                        <span class="tech-tag">Entity Framework</span>
+                        <span class="tech-tag">Repository Pattern</span>
+                    </div>
+                </div>
+                
+                <!-- Java Project -->
+                <div class="project">
+                    <div class="project-header">
+                        <div class="project-title-row">
+                            <h3 class="project-title">Academic Database Suite</h3>
+                            <span class="project-grade">71%</span>
+                        </div>
+                        <div class="project-type">Java • Swing • SQLite • DAO Pattern</div>
+                    </div>
+                    <div class="project-description">
+                        Full-featured database application with DAO pattern implementation. 
+                        Features secure CRUD operations and comprehensive data validation.
+                    </div>
+                    <div class="project-tech">
+                        <span class="tech-tag">Java 11</span>
+                        <span class="tech-tag">Swing GUI</span>
+                        <span class="tech-tag">SQLite</span>
+                        <span class="tech-tag">DAO Pattern</span>
+                        <span class="tech-tag">MVC Architecture</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section - Added -->
+    <section id="education" class="section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Education & Achievements</h2>
+                <p class="section-subtitle">Academic journey and professional development milestones</p>
+            </div>
+            
+            <div class="education-section">
+                <div class="education-timeline">
+                    <!-- University Education -->
+                    <div class="education-item">
+                        <div class="education-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="education-content">
+                            <div class="education-header">
+                                <h3 class="education-title">University of KwaZulu-Natal</h3>
+                                <span class="education-period">2023 - 2026</span>
+                            </div>
+                            <div class="education-subtitle">Bachelor of Science in Computer Science & Information Technology</div>
+                            <div class="education-details">
+                                <p>Comprehensive curriculum covering software engineering, database systems, networking, and system analysis. Strong emphasis on practical implementation and modern development methodologies.</p>
+                            </div>
+                            <div class="education-achievements">
+                                <div class="achievement-title">
+                                    <i class="fas fa-trophy"></i> Academic Excellence
+                                </div>
+                                <ul class="achievement-list">
+                                    <li>6 distinction-level passes across major subjects</li>
+                                    <li>Achieved 87% in Applied Systems Implementation (Top of Class)</li>
+                                    <li>Consistent academic performance with strong theoretical and practical understanding</li>
+                                    <li>Recognition for excellence in software architecture and design patterns</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- High School -->
+                    <div class="education-item">
+                        <div class="education-icon">
+                            <i class="fas fa-school"></i>
+                        </div>
+                        <div class="education-content">
+                            <div class="education-header">
+                                <h3 class="education-title">Sikhulangemfundo High School</h3>
+                                <span class="education-period">2017 - 2022</span>
+                            </div>
+                            <div class="education-subtitle">National Senior Certificate</div>
+                            <div class="education-details">
+                                <p>Strong academic foundation with focus on mathematics, sciences, and technology. Developed analytical thinking and problem-solving skills through rigorous curriculum.</p>
+                            </div>
+                            <div class="education-achievements">
+                                <div class="achievement-title">
+                                    <i class="fas fa-award"></i> Key Achievements
+                                </div>
+                                <ul class="achievement-list">
+                                    <li>Achieved APS Score of 33 (Strong academic performance)</li>
+                                    <li>Awarded "Most Improved in Mathematics" (2022)</li>
+                                    <li>Developed foundational skills in logical reasoning and analytical thinking</li>
+                                    <li>Participated in science and technology exhibitions</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Certifications & Professional Development -->
+                    <div class="education-item">
+                        <div class="education-icon">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <div class="education-content">
+                            <div class="education-header">
+                                <h3 class="education-title">Professional Development & Certifications</h3>
+                                <span class="education-period">Ongoing</span>
+                            </div>
+                            <div class="education-subtitle">Continuous Learning & Skill Enhancement</div>
+                            <div class="education-details">
+                                <p>Committed to staying current with industry trends and technologies through continuous learning and professional development.</p>
+                            </div>
+                            <div class="education-achievements">
+                                <div class="achievement-title">
+                                    <i class="fas fa-code"></i> Technical Certifications
+                                </div>
+                                <ul class="achievement-list">
+                                    <li>Advanced Object-Oriented Programming Concepts & Implementation</li>
+                                    <li>Database Design: Normalization & Optimization Techniques</li>
+                                    <li>Software Architecture: Clean Architecture & Design Patterns</li>
+                                    <li>Android Development with Kotlin & Jetpack Compose</li>
+                                    <li>.NET Framework & Entity Framework Mastery</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Enhanced Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="contact-section">
+                <div class="contact-content">
+                    <h2 class="contact-title">Let's Work Together</h2>
+                    <p class="contact-subtitle">
+                        I'm currently seeking graduate opportunities and internships where I can contribute 
+                        my skills in Android development, .NET, and software architecture.
+                    </p>
+                    
+                    <div class="contact-grid">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>Email</h3>
+                                <p>muziwonkembokazi.087@gmail.com</p>
+                                <a href="mailto:muziwonkembokazi.087@gmail.com" class="contact-link">
+                                    <i class="fas fa-paper-plane"></i> Send Message
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>Phone</h3>
+                                <p>+27 76 159 0952</p>
+                                <a href="tel:+27761590952" class="contact-link">
+                                    <i class="fas fa-phone-alt"></i> Call Now
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fab fa-linkedin"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>LinkedIn</h3>
+                                <p>Professional Profile</p>
+                                <a href="https://www.linkedin.com/in/muziwonke-mbambo-3889b8295" target="_blank" class="contact-link">
+                                    <i class="fab fa-linkedin"></i> Connect
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fab fa-github"></i>
+                            </div>
+                            <div class="contact-info">
+                                <h3>GitHub</h3>
+                                <p>Code Repository</p>
+                                <a href="https://github.com/wonkerh" target="_blank" class="contact-link">
+                                    <i class="fab fa-github"></i> View Projects
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="mailto:muziwonkembokazi.087@gmail.com" class="social-link">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/muziwonke-mbambo-3889b8295" target="_blank" class="social-link">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/wonkerh" target="_blank" class="social-link">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="tel:+27761590952" class="social-link">
+                            <i class="fas fa-phone"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Mziwonke Mbambo</h3>
+                    <p>Full Stack & Android Developer with expertise in Kotlin, .NET, and modern software architecture. Passionate about building scalable solutions across multiple platforms.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Navigation</h3>
+                    <ul class="footer-links">
+                        <li><a href="#skills"><i class="fas fa-chevron-right"></i> Skills</a></li>
+                        <li><a href="#android"><i class="fas fa-chevron-right"></i> Android</a></li>
+                        <li><a href="#projects"><i class="fas fa-chevron-right"></i> Projects</a></li>
+                        <li><a href="#education"><i class="fas fa-chevron-right"></i> Education</a></li>
+                        <li><a href="#contact"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Connect</h3>
+                    <ul class="footer-links">
+                        <li>
+                            <a href="mailto:muziwonkembokazi.087@gmail.com">
+                                <i class="fas fa-envelope"></i> Email
+                            </a>
+                        </li>
+                        <li>
+                            <a href="tel:+27761590952">
+                                <i class="fas fa-phone"></i> Phone
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://www.linkedin.com/in/muziwonke-mbambo-3889b8295" target="_blank">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://github.com/wonkerh" target="_blank">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                © 2025 Mziwonke Smanga Mbambo. All rights reserved.<br>
+                University of KwaZulu-Natal | BSc Computer Science & IT
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Add animation to project cards
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.project, .android-card, .education-item').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s, transform 0.5s';
+            observer.observe(card);
+        });
+        
+        // Add active state to nav links
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        function updateActiveNav() {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                
+                if (scrollY >= (sectionTop - 100)) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', updateActiveNav);
+        
+        // Add hover effect to contact cards
+        document.querySelectorAll('.contact-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(-5px)';
+            });
+        });
+    </script>
+</body>
+</html>
